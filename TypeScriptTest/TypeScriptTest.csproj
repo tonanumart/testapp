@@ -140,6 +140,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\js\" />
     <Folder Include="Scripts\ts\" />
+    <Folder Include="Template\Component\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

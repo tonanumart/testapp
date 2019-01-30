@@ -1,6 +1,6 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var hero_component_1 = require("./components/hero/hero-component");
 var company_component_1 = require("./components/company/company-component");
 var Components = /** @class */ (function () {
@@ -16,7 +16,7 @@ exports.Components = Components;
 
 },{"./components/company/company-component":2,"./components/hero/hero-component":4}],2:[function(require,module,exports){
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var company_controller_1 = require("./company-controller");
 var ComapnyComponent = /** @class */ (function () {
     function ComapnyComponent() {
@@ -41,7 +41,7 @@ exports.ComapnyComponent = ComapnyComponent;
 
 },{"./company-controller":3}],3:[function(require,module,exports){
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var ComapnyComponentController = /** @class */ (function () {
     function ComapnyComponentController(companiesResource) {
         this.companiesResource = companiesResource;
@@ -68,7 +68,7 @@ exports.ComapnyComponentController = ComapnyComponentController;
 
 },{}],4:[function(require,module,exports){
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var hero_controller_1 = require("./hero-controller");
 var HerosComponent = /** @class */ (function () {
     function HerosComponent() {
@@ -89,7 +89,7 @@ exports.HerosComponent = HerosComponent;
 
 },{"./hero-controller":5}],5:[function(require,module,exports){
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var hero_1 = require("../../models/hero");
 var HerosComponentController = /** @class */ (function () {
     function HerosComponentController() {
@@ -105,7 +105,7 @@ exports.HerosComponentController = HerosComponentController;
 
 },{"../../models/hero":9}],6:[function(require,module,exports){
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var loading_indicator_bar_1 = require("./directives/loading-indicator-bar");
 var Directives = /** @class */ (function () {
     function Directives() {
@@ -119,7 +119,7 @@ exports.Directives = Directives;
 
 },{"./directives/loading-indicator-bar":7}],7:[function(require,module,exports){
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var angular = require("angular");
 var LoadingIndicatorBarDirective = /** @class */ (function () {
     function LoadingIndicatorBarDirective() {
@@ -233,7 +233,7 @@ exports.LoadingIndicatorBarController = LoadingIndicatorBarController;
 
 },{"angular":13}],8:[function(require,module,exports){
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var company_resource_1 = require("./services/company.resource");
 var Factories = /** @class */ (function () {
     function Factories() {
@@ -247,7 +247,7 @@ exports.Factories = Factories;
 
 },{"./services/company.resource":11}],9:[function(require,module,exports){
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.HEROS = [
     { id: 11, name: "Mr. Nice" },
     { id: 12, name: "Narco" },
@@ -266,9 +266,9 @@ exports.HEROS = [
 
 },{}],10:[function(require,module,exports){
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var angular = require("angular");
-//import * as ngResource from 'angular-resource';
+//import '@progress/kendo-ui';
 var components_1 = require("./components");
 var factories_1 = require("./factories");
 var directives_1 = require("./directives");
@@ -281,14 +281,14 @@ angular.element(document).ready(function () {
     var app = angular.module(MODULE_NAME);
     //bootstrap the application
     angular.bootstrap(document, [MODULE_NAME], {
-        "strictDi": true,
+        "strictDi": true
     });
     //*/
 });
 
 },{"./components":1,"./directives":6,"./factories":8,"angular":13}],11:[function(require,module,exports){
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var CompanyResource = /** @class */ (function () {
     function CompanyResource($http) {
         this.$http = $http;

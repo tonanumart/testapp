@@ -18,9 +18,12 @@
     "typescript": "^3.2.4"
   },
   "dependencies": {
+    "@progress/kendo-ui": "^2018.3.1219",
     "@types/angular": "^1.6.53",
     "@types/angular-resource": "^1.5.15",
+    "@types/kendo-ui": "^2018.3.0",
     "angular": "^1.5.7",
-    "angular-resource": "^1.7.6"
+    "angular-resource": "^1.7.6",
+    "kendo-ui-core": "^2018.3.1219"
   }
 }

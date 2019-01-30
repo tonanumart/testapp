@@ -1,5 +1,8 @@
 import * as angular from 'angular';
-//import * as ngResource from 'angular-resource';
+
+
+//import '@progress/kendo-ui';
+
 
 import { Components } from './components';
 import { Factories } from './factories';
