@@ -330,4 +330,4 @@ ASALocalRun/
 .mfractor/
 
 # Cutomize ignore
-AngularJSType/
+AngularJSType/*
