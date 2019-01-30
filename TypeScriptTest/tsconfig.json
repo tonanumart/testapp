@@ -1,9 +1,7 @@
 {
     "compilerOptions": {
-      //"module": "commonjs",
-      "target": "es5"
-    },
-    "files": [
-      "Scripts/ts/script.ts"
-    ]
-  }
+      "module": "commonjs",
+      "target": "es5",
+      "sourceMap": true
+    }
+}

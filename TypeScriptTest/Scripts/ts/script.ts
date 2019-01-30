@@ -1,36 +1,32 @@
+//import { LoadingIndicatorBarDirective } from "./loading-indicator-bar";
+//import { Factories } from './factories';
+import { HerosComponent } from './components/hero/hero-component';
+import * as angular from 'angular';
+
+
 var module = angular.module("mySuperAwesomeApp", []);
 
-interface IHero {
-    id: number;
-    name: string;
-}
 
-const HEROS: IHero[] = [
-    { id: 11, name: "Mr. Nice" },
-    { id: 12, name: "Narco" },
-    { id: 13, name: "Bombasto" },
-    { id: 14, name: "Celeritas" },
-    { id: 15, name: "Magneta" },
-    { id: 16, name: "RubberMan" },
-    { id: 17, name: "Dynama" },
-    { id: 18, name: "Dr IQ" },
-    { id: 19, name: "Magma" },
-    { id: 20, name: "Tornado" },
-    { id: 21, name: "Anuamrt Testing" }
-];
-
-module.component("heros", {
-  template: `
-    <ul>
-        <li ng-repeat="hero in $ctrl.heros">{{ hero.name }}</li>
-    </ul>
-  `,
-  controller: function herosController() {
-        this.heros = HEROS;
-  },
-  controllerAs: "$ctrl"
-});
+module.component("heros", new HerosComponent());//.directive("loadingIndicatorBar", LoadingIndicatorBarDirective.Factory());
 
 angular.element(document).ready(function() {
+
   angular.bootstrap(document, ["mySuperAwesomeApp"]);
+
+  /*
+  //module name
+  const MODULE_NAME: string = "mySuperAwesomeApp";
+
+  //create app module
+  let app: ng.IModule = angular.module(MODULE_NAME);
+
+  //create factories
+  Factories.build(app);
+
+  //bootstrap the application
+  angular.bootstrap(document, [MODULE_NAME], {
+    "strictDi": true
+  });
+  //*/
+
 });
