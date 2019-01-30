@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "@types/angular": "^1.6.53",
+    "@types/angular-resource": "^1.5.15",
+    "angular": "^1.5.7",
     "angular-resource": "^1.7.6"
   }
 }

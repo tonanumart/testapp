@@ -3,9 +3,15 @@ import * as angular from "angular";
 
 export class LoadingIndicatorBarDirective implements ng.IDirective {
 
-    public controller: any = "LoadingIndicatorBarController";
-    public controllerAs: string = "loadingIndicatorBarController";
+    public controller: ng.Injectable<ng.IControllerConstructor>;
+    public controllerAs: string;
     public restrict: string = "E";
+
+
+    constructor(){
+      this.controller = LoadingIndicatorBarController;
+      this.controllerAs = "$indCtrl";
+    }
 
     /**
      * The link function is responsible for registering DOM listeners as well as updating the DOM.
@@ -99,7 +105,7 @@ export class LoadingIndicatorBarDirective implements ng.IDirective {
       });
       this.$timeout(() => {
         this.$element.addClass("ng-hide");
-      }, 500);
+      }, 3000);
       return this;
     }
 

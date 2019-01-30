@@ -5,6 +5,14 @@
     <title>@ViewBag.Title - My ASP.NET MVC Application </title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <link rel="stylesheet" href="~/Styles/style.css" />
+    <script>
+        var baseUrl = '@Url.Content("~/")';
+
+        function serverUrl() {
+            return baseUrl;
+        } 
+    </script>
+    <base href="@Url.Content("~/")" />
 </head>
 <body>
     <h1>Welcome to test type!!</h1>

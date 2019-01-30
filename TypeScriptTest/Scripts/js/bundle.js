@@ -1,21 +1,93 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var hero_component_1 = require("./components/hero/hero-component");
+var company_component_1 = require("./components/company/company-component");
+var Components = /** @class */ (function () {
+    function Components() {
+    }
+    Components.build = function (app) {
+        app.component("heros", new hero_component_1.HerosComponent());
+        app.component("company", new company_component_1.ComapnyComponent());
+    };
+    return Components;
+}());
+exports.Components = Components;
+
+},{"./components/company/company-component":2,"./components/hero/hero-component":4}],2:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var company_controller_1 = require("./company-controller");
+var ComapnyComponent = /** @class */ (function () {
+    function ComapnyComponent() {
+        //public template: string;
+        this.templateUrl = "Template/Component/comapny-component.view.html";
+        //console.log("ComapnyComponent constructor");
+        this.controller = company_controller_1.ComapnyComponentController;
+        //console.log("ComapnyComponent ==> ComapnyComponentController ok!");
+        this.controllerAs = "$ctrl";
+        /*this.template = `
+          <hr />
+          <input type="button" value="refresh" ng-click="$ctrl.getCompany('1')" >
+          <ul>
+            <li>Id : {{$ctrl.company.Id }} </li>
+            <li>Name :  {{$ctrl.company.Name }}  </li>
+          </ul>
+        `;*/
+    }
+    return ComapnyComponent;
+}());
+exports.ComapnyComponent = ComapnyComponent;
+
+},{"./company-controller":3}],3:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var ComapnyComponentController = /** @class */ (function () {
+    function ComapnyComponentController(companiesResource) {
+        this.companiesResource = companiesResource;
+        console.log("ComapnyComponentController constructor");
+    }
+    ComapnyComponentController.prototype.$onInit = function () {
+        console.log("ComapnyComponentController onInit");
+        this.company = {
+            Name: "Anumart",
+            Id: -1
+        };
+    };
+    ComapnyComponentController.prototype.getCompany = function (id) {
+        var _this = this;
+        this.companiesResource.get(id).then(function (value) {
+            debugger;
+            _this.company = value;
+        });
+    };
+    ComapnyComponentController.$inject = ["companiesResource"];
+    return ComapnyComponentController;
+}());
+exports.ComapnyComponentController = ComapnyComponentController;
+
+},{}],4:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var hero_controller_1 = require("./hero-controller");
 var HerosComponent = /** @class */ (function () {
     function HerosComponent() {
-        console.log("HerosComponent constructor");
+        this.templateUrl = "Template/Component/heros-component.view.html";
+        //console.log("HerosComponent constructor");
         this.controller = hero_controller_1.HerosComponentController;
-        debugger;
-        console.log("HerosComponent ==> HerosComponentController ok!");
+        //console.log("HerosComponent ==> HerosComponentController ok!");
         this.controllerAs = "$ctrl";
-        this.template = "\n        <ul>\n          <li ng-repeat=\"hero in $ctrl.heros\">{{ hero.name }}</li>\n        </ul>\n      ";
+        /*this.template = `
+          <ul>
+            <li ng-repeat="hero in $ctrl.heros">{{ hero.name }}</li>
+          </ul>
+        `;*/
     }
     return HerosComponent;
 }());
 exports.HerosComponent = HerosComponent;
 
-},{"./hero-controller":2}],2:[function(require,module,exports){
+},{"./hero-controller":5}],5:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var hero_1 = require("../../models/hero");
@@ -31,7 +103,149 @@ var HerosComponentController = /** @class */ (function () {
 }());
 exports.HerosComponentController = HerosComponentController;
 
-},{"../../models/hero":3}],3:[function(require,module,exports){
+},{"../../models/hero":9}],6:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var loading_indicator_bar_1 = require("./directives/loading-indicator-bar");
+var Directives = /** @class */ (function () {
+    function Directives() {
+    }
+    Directives.build = function (app) {
+        app.directive("loadingIndicatorBar", loading_indicator_bar_1.LoadingIndicatorBarDirective.Factory());
+    };
+    return Directives;
+}());
+exports.Directives = Directives;
+
+},{"./directives/loading-indicator-bar":7}],7:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var angular = require("angular");
+var LoadingIndicatorBarDirective = /** @class */ (function () {
+    function LoadingIndicatorBarDirective() {
+        this.restrict = "E";
+        /**
+         * The link function is responsible for registering DOM listeners as well as updating the DOM.
+         *
+         * @class LoadingIndicatorBarDirective
+         * @method link
+         * @param $scope {ng.IScope} The scope for this directive
+         * @param $element {ng.IAugmentedJQuery} The JQuery instance members object.
+         * @param $attributes {ng.IAttributes} An object containing normalized DOM element attributes.
+         * @param loadingIndicatorBarController {LoadingIndicatorBarController} A new instance of the controller.
+         */
+        this.link = function (scope, element, attributes, loadingIndicatorBarController) {
+            loadingIndicatorBarController.init(element);
+        };
+        this.controller = LoadingIndicatorBarController;
+        this.controllerAs = "$indCtrl";
+    }
+    /**
+     * Create the directive.
+     *
+     * @class LoadingIndicatorBarDirective
+     * @method Factory
+     * @static
+     * @return {ng.IDirectiveFactory} A function to create the directive.
+     */
+    LoadingIndicatorBarDirective.Factory = function () {
+        return function () { return new LoadingIndicatorBarDirective(); };
+    };
+    return LoadingIndicatorBarDirective;
+}());
+exports.LoadingIndicatorBarDirective = LoadingIndicatorBarDirective;
+var LoadingIndicatorBarController = /** @class */ (function () {
+    /**
+     * Create the loading bar controller.
+     *
+     * @class LoadingIndicatorBarController
+     * @param $timeout {ng.ITimeoutService} The $timeout service.
+     * @constructor
+     */
+    function LoadingIndicatorBarController($timeout) {
+        this.$timeout = $timeout;
+    }
+    /**
+     * Initialize the controller.
+     *
+     * @class LoadingIndicatorBarController
+     * @method init
+     * @param $element {ng.IAugmentedJQuery} The JQuery instance members.
+     * @return {ILoadingIndicatorController} Self for chaining.
+     */
+    LoadingIndicatorBarController.prototype.init = function ($element) {
+        //store reference the $element in this scope
+        this.$element = $element;
+        //create container element
+        var container = angular.element("<div class=\"loading-container\">");
+        //append loading indicator bar
+        this.$loading = angular.element("<div class=\"loading\">");
+        container.append(this.$loading);
+        //append container
+        this.$element.append(container);
+        return this;
+    };
+    /**
+     * Hide the loading bar.
+     *
+     * @class LoadingIndicatorBarController
+     * @method hide
+     * @return {ILoadingIndicatorController} Self for chaining.
+     */
+    LoadingIndicatorBarController.prototype.hide = function () {
+        var _this = this;
+        this.$loading.css({
+            opacity: 0
+        });
+        this.$timeout(function () {
+            _this.$element.addClass("ng-hide");
+        }, 3000);
+        return this;
+    };
+    /**
+     * Set the width of the bar.
+     *
+     * @class LoadingIndicatorBarController
+     * @method setWidth
+     * @param width {number} The percentage width of the loading indicator bar.
+     * @return {ILoadingIndicatorController} Self for chaining.
+     */
+    LoadingIndicatorBarController.prototype.setWidth = function (width) {
+        this.$loading.css({ width: width + "%" });
+        return this;
+    };
+    /**
+     * Show the loading indicator.
+     *
+     * @class LoadingIndicatorBarController
+     * @method show
+     * @return {ILoadingIndicatorController} Self for chaining.
+     */
+    LoadingIndicatorBarController.prototype.show = function () {
+        this.$element.removeClass("ng-hide");
+        this.$loading.css({ opacity: 1 });
+        return this;
+    };
+    LoadingIndicatorBarController.$inject = ["$timeout"];
+    return LoadingIndicatorBarController;
+}());
+exports.LoadingIndicatorBarController = LoadingIndicatorBarController;
+
+},{"angular":13}],8:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var company_resource_1 = require("./services/company.resource");
+var Factories = /** @class */ (function () {
+    function Factories() {
+    }
+    Factories.build = function (app) {
+        app.service("companiesResource", company_resource_1.CompanyResource);
+    };
+    return Factories;
+}());
+exports.Factories = Factories;
+
+},{"./services/company.resource":11}],9:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HEROS = [
@@ -50,35 +264,51 @@ exports.HEROS = [
     { id: 22, name: "Anuamrt III" }
 ];
 
-},{}],4:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//import { LoadingIndicatorBarDirective } from "./loading-indicator-bar";
-//import { Factories } from './factories';
-var hero_component_1 = require("./components/hero/hero-component");
 var angular = require("angular");
-var module = angular.module("mySuperAwesomeApp", []);
-module.component("heros", new hero_component_1.HerosComponent()); //.directive("loadingIndicatorBar", LoadingIndicatorBarDirective.Factory());
+//import * as ngResource from 'angular-resource';
+var components_1 = require("./components");
+var factories_1 = require("./factories");
+var directives_1 = require("./directives");
+var MODULE_NAME = "mySuperAwesomeApp";
+var module = angular.module(MODULE_NAME, []);
+components_1.Components.build(module);
+factories_1.Factories.build(module);
+directives_1.Directives.build(module);
 angular.element(document).ready(function () {
-    angular.bootstrap(document, ["mySuperAwesomeApp"]);
-    /*
-    //module name
-    const MODULE_NAME: string = "mySuperAwesomeApp";
-  
-    //create app module
-    let app: ng.IModule = angular.module(MODULE_NAME);
-  
-    //create factories
-    Factories.build(app);
-  
+    var app = angular.module(MODULE_NAME);
     //bootstrap the application
     angular.bootstrap(document, [MODULE_NAME], {
-      "strictDi": true
+        "strictDi": true,
     });
     //*/
 });
 
-},{"./components/hero/hero-component":1,"angular":6}],5:[function(require,module,exports){
+},{"./components":1,"./directives":6,"./factories":8,"angular":13}],11:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var CompanyResource = /** @class */ (function () {
+    function CompanyResource($http) {
+        this.$http = $http;
+    }
+    CompanyResource.prototype.get = function (id) {
+        return this.$http.get(CompanyResource.COMPANIES + id).then(function (value) {
+            return value.data;
+        });
+        /* return {
+             id : 99,
+             name : "Anumart IV"
+         }*/
+    };
+    CompanyResource.$inject = ["$http"];
+    CompanyResource.COMPANIES = "api/company/";
+    return CompanyResource;
+}());
+exports.CompanyResource = CompanyResource;
+
+},{}],12:[function(require,module,exports){
 /**
  * @license AngularJS v1.5.7
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -31552,8 +31782,8 @@ $provide.value("$locale", {
 })(window);
 
 !window.angular.$$csp().noInlineStyle && window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>');
-},{}],6:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 require('./angular');
 module.exports = angular;
 
-},{"./angular":5}]},{},[4]);
+},{"./angular":12}]},{},[10]);
