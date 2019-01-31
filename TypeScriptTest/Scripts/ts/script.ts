@@ -1,5 +1,7 @@
+
+
 import * as angular from 'angular';
-import 'kendo-ui-core';
+import  'kendo-ui-core'; 
 
 import { Components } from './components';
 import { Factories } from './factories';

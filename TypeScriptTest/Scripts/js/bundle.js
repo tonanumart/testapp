@@ -36759,6 +36759,8 @@ require('./angular');
 module.exports = angular;
 
 },{"./angular":14}],16:[function(require,module,exports){
+(function (global){
+; var __browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /*!
  * jQuery JavaScript Library v3.3.1
  * https://jquery.com/
@@ -47124,6 +47126,11 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
+; browserify_shim__define__module__export__(typeof jQuery != "undefined" ? jQuery : window.jQuery);
+
+}).call(global, undefined, undefined, undefined, undefined, function defineExport(ex) { module.exports = ex; });
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],17:[function(require,module,exports){
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
